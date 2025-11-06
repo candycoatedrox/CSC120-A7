@@ -58,4 +58,4 @@ _____ 1 pt: The `House`, `Library`, and `Cafe` classes all `extend` the `Buildin
 
 **YES** 1 pt: All required files included with submission (including completed `rubric.md` file)
 
-_____ 1 pt: `reflection.md` contains your reflection on the assignment
+**YES** 1 pt: `reflection.md` contains your reflection on the assignment
