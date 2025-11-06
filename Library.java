@@ -5,6 +5,9 @@ public class Library extends Building implements LibraryRequirements {
 
     private Hashtable<String, Boolean> collection;
 
+    /**
+     * Constructor
+     */
     public Library(String name, String address, int nFloors) {
         super(name, address, nFloors);
         this.collection = new Hashtable<>();
@@ -12,6 +15,11 @@ public class Library extends Building implements LibraryRequirements {
         System.out.println("You have built a library: 📖");
     }
 
+    /**
+     * Adds a book to this Library's collection
+     * @param title the title of the book being added to the collection
+     * @throws RuntimeException if the title is already in this Library's collection
+     */
     public void addTitle(String title) {
         if (this.containsTitle(title)) {
             throw new RuntimeException("Title already in collection");
@@ -20,6 +28,11 @@ public class Library extends Building implements LibraryRequirements {
         this.collection.put(title, true);
     }
 
+    /**
+     * Removes a book from this Library's collection
+     * @param title the title of the book being removed from the collection
+     * @throws RuntimeException if the title is not in this Library's collection
+     */
     public String removeTitle(String title) {
         if (!this.containsTitle(title)) {
             throw new RuntimeException("Title not in collection");
@@ -29,26 +42,55 @@ public class Library extends Building implements LibraryRequirements {
         return title;
     }
 
+    /**
+     * Checks out a book from this Library
+     * @param title the title of the book being checked out
+     * @throws RuntimeException if the title is not in this Library's collection or is already checked out
+     */
     public void checkOut(String title) {
-        if (!this.isAvailable(title)) {
-            throw new RuntimeException("Title already checked out");
+        if (this.containsTitle(title)) {
+            if (this.isAvailable(title)) {
+                this.collection.put(title, false);
+            } else {
+                throw new RuntimeException("Title already checked out");
+            }
+        } else {
+            throw new RuntimeException("Title not in collection");
         }
-
-        this.collection.put(title, false);
     }
 
+    /**
+     * Returns a book to this Library
+     * @param title the title of the book being returned
+     * @throws RuntimeException if the title is not in this Library's collection or is not checked out
+     */
     public void returnBook(String title) {
-        if (this.isAvailable(title)) {
-            throw new RuntimeException("Title is not checked out");
+        if (this.containsTitle(title)) {
+            if (!this.isAvailable(title)) {
+                this.collection.put(title, true);
+            } else {
+                throw new RuntimeException("Title is not checked out");
+            }
+        } else {
+            throw new RuntimeException("Title not in collection");
         }
-
-        this.collection.put(title, true);
     }
 
+    /**
+     * Checks whether a title is in this Library's collection
+     * @param title the title to check for
+     * @return true if the title is in this Library's collection; false otherwise
+     */
     public boolean containsTitle(String title) {
         return this.collection.containsKey(title);
     }
 
+    /**
+     * Checks whether a title is currently available
+     * @param title the title to check the status of
+     * @return true if the title is not checked out; false otherwise
+     * @throws RuntimeException if the title is not in this Library's collection
+     */
     public boolean isAvailable(String title) {
         if (!this.containsTitle(title)) {
             throw new RuntimeException("Title does not exist in collection");
@@ -57,6 +99,9 @@ public class Library extends Building implements LibraryRequirements {
         return this.collection.get(title);
     }
 
+    /**
+     * Prints out this Library's collection in an easy-to-read way, including availability
+     */
     public void printCollection() {
         int n = 1;
         Set<String> titles = this.collection.keySet();

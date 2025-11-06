@@ -1,4 +1,5 @@
-Use this file to record your reflection on this assignment.
+Inheritance is interesting -- it didn't really affect this assignment much, honestly, because none of Building's subclasses have any methods that used the attributes or methods from Building, but I can definitely see how it can be very useful. For one thing, regardless of whether a subclass actually *uses* anything from its parent class, it provides a helpful mental hierarchy of classes in a programmer's mind. It also allows you to set up very basic attributes that multiple classes should share, which may not be very important to the actual *functionality* of the classes, but can be very useful on a user level. That was where the Building attributes were most useful to me in this assignment: I was able to print out the names of my Buildings while testing. That would definitely be useful in a program using these classes with multiple objects of each type! Plus, and most importantly, I can absolutely see how inheriting methods from a parent class could be EXTREMELY useful, even if it wasn't really relevant to this assignment.
 
-- What are your initial impressions of how `Inheritance` affects your programming?
-- What worked, what didn't, what advice would you give someone taking this course in the future?
+The assignment was also a fun introduction to Hashtables, which are apparently one of Java's dictionary classes, especially because dictionaries are the only basic data type I never learned in Python for some reason. But now I understand how they work beyond the extremely basic idea of "mapping two values to each other instead of a value to an index"! Hooray!
+
+Overall, the assignment wasn't super challenging for me, but it was fun! :)
